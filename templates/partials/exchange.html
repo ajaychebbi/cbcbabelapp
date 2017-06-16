@@ -1,0 +1,53 @@
+<div class="panel-group">
+    {% if greeting %}
+      <div class="panel panel-success">
+          <div class="panel-heading">
+            Watson is greeting you...
+          </div>
+          <div class="panel-body">
+            {% for line in greeting.answer %}
+              <p>{{ line }}</p>
+            {% endfor %}
+          </div>
+      </div>
+    {% endif %}
+    {% if input %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              you said...
+            </div>
+            <div class="panel-body">
+                {{ input.text }}
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    {% endif %}
+    {% if result %}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+              Watson said...
+            </div>
+            <div class="panel-body">
+                {% for line in result.answer %}
+                  <p>{{ line }}</p>
+                {% endfor %}
+            </div>
+            <div class="panel-footer">
+              {% for label in result.labels %}
+                <span class="label label-info">{{label}}</span>
+              {% endfor %}
+            </div>
+        </div>
+        {% if result.action %}
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+              Watson is executing an action...
+            </div>
+            <div class="panel-body">
+                {{result.action}}
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>

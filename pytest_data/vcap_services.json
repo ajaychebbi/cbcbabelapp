@@ -1,0 +1,42 @@
+{
+    "conversation": [
+        {
+            "credentials": {
+                "url": "https://gateway.watsonplatform.net/conversation/api",
+                "username": "fake username for conversation",
+                "password": "fake password for conversation"
+            },
+            "syslog_drain_url": null,
+            "label": "conversation",
+            "provider": null,
+            "plan": "free",
+            "name": "Conversation-mc",
+            "tags": [
+                "watson",
+                "ibm_created",
+                "ibm_dedicated_public",
+                "lite"
+            ]
+        }
+    ],
+    "language_translator": [
+        {
+            "credentials": {
+                "url": "https://gateway.watsonplatform.net/language-translator/api",
+                "username": "fake username for language_translator",
+                "password": "fake password for language_translator"
+            },
+            "syslog_drain_url": null,
+            "label": "language_translator",
+            "provider": null,
+            "plan": "lite",
+            "name": "Language Translator-of",
+            "tags": [
+                "watson",
+                "ibm_created",
+                "ibm_dedicated_public",
+                "lite"
+            ]
+        }
+    ]
+}

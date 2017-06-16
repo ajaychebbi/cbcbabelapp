@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Interaction Template - Cognitive Builder Course</title>
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Talk to me...</h1>
+        <div id="begin"></div>
+        {% if greeting %}
+        {% include 'partials/exchange.html' %}
+        {% endif %}
+        <div id="user_input" class="input-group-lg">
+            <input id="user_text" type="text" class="form-control" placeholder="say something here...">
+        </div>
+        <div id="end"></div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+    	//Submit data when enter key is pressed
+        $('#user_text').keydown(function(e) {
+        	var user_val = $('#user_text').val();
+            if (e.which == 13 && user_val.length > 0) { //catch Enter key
+            	  //POST request to your python script localhost:8080/api/search/
+                $.ajax({
+                				  method: "POST",
+                				  url: "./api/interact",
+                				  contentType: "application/json",
+                				  data: JSON.stringify({ input: user_val }) //send it the input text as JSON
+				              })
+                .done(function(data) {
+                    // when it's done, get the results (HTML) and inject them before the input
+                    $('#user_input').before(data);
+                    $('#user_text').val('');
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>
